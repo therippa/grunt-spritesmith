@@ -60,13 +60,13 @@ function getCoordinateName(filepath) {
   return nameParts.join('.');
 }
 
-function cacheBustFilename(filename, buf) {
-  var file_md5 = md5(buf);
-  return filename.splice(filename.lastIndexOf('.'), 0, "." + file_md5);
+function splice(str, idx, rem, s) {
+  return (str.slice(0, idx) + s + str.slice(idx + Math.abs(rem)));
 }
 
-String.prototype.splice = function( idx, rem, s ) {
-  return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));
+function cacheBustFilename(filename, buf) {
+  var fileMD5 = md5(buf);
+  return splice(filename, filename.lastIndexOf('.'), 0, '.' + fileMD5);
 }
 
 module.exports = function gruntSpritesmith (grunt) {
@@ -184,7 +184,9 @@ module.exports = function gruntSpritesmith (grunt) {
       grunt.file.mkdir(destImgDir);
 
       // Cachebust check
-      if (cacheBust) destImg = cacheBustFilename(destImg, result.image);
+      if (cacheBust) {
+        destImg = cacheBustFilename(destImg, result.image);
+      }
 
       // Write file
       fs.writeFileSync(destImg, result.image, 'binary');
@@ -233,7 +235,9 @@ module.exports = function gruntSpritesmith (grunt) {
         grunt.file.mkdir(retinaDestImgDir);
 
         // Cachebust check
-        if (cacheBust) retinaDestImg = cacheBustFilename(retinaDestImg, result.image);
+        if (cacheBust) {
+          retinaDestImg = cacheBustFilename(retinaDestImg, result.image);
+        }
 
         // Write file
         fs.writeFileSync(retinaDestImg, retinaResult.image, 'binary');

@@ -42,6 +42,31 @@ describe('grunt-spritesmith', function () {
     });
   });
 
+  describe('cachebusting filenames', function () {
+    gruntUtils.runTask('sprite:cacheBust');
+    this.timeout(5000);
+    it('correctly renames the generate image', function (done) {
+      // Make sure file exists with the cachebusted name
+      var fileExists = true;
+
+      var filename = actualDir + 'sprite.cachebusted.e63a258512c78613560e68689e75a995.png';
+
+      try {
+        fs.statSync(filename);
+      } catch (err) {
+        if (err.code === 'ENOENT') {
+          fileExists = false;
+        }
+      }
+
+      // Make sure file exists
+      assert.strictEqual(fileExists, true);
+      done();
+    });
+
+  });
+
+
   describe('converting a retina set of images', function () {
     gruntUtils.runTask('sprite:retina');
 

@@ -8,6 +8,14 @@ module.exports = function (grunt) {
         dest: 'scratch/sprite.basic.png',
         destCss: 'scratch/sprite_positions.basic.styl'
       },
+      cacheBust: {
+        // TODO: This order is forced due to png/jpg ordering. We should fix this.
+        // src: 'test_files/*.{jpg,png}',
+        src: ['test_files/sprite1.png', 'test_files/sprite2.jpg', 'test_files/sprite3.png'],
+        dest: 'scratch/sprite.cachebusted.png',
+        destCss: 'scratch/sprite_positions.cachebusted.styl',
+        cacheBust: true
+      },
       retina: {
         src: ['test_files/sprite1*.png', 'test_files/sprite2*.jpg', 'test_files/sprite3*.png'],
         retinaSrcFilter: ['test_files/*@2x.{png,jpg}'],
