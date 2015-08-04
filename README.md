@@ -1,4 +1,4 @@
-# grunt-spritesmith [![Build status](https://travis-ci.org/Ensighten/grunt-spritesmith.svg?branch=master)](https://travis-ci.org/Ensighten/grunt-spritesmith)
+# grunt-spritesmith [![Build status](https://travis-ci.org/therippa/grunt-spritesmith.svg?branch=master)](https://travis-ci.org/therippa/grunt-spritesmith)
 
 Grunt task for converting a set of images into a spritesheet and corresponding CSS variables.
 
