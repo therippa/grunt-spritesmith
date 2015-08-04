@@ -63,9 +63,7 @@ describe('grunt-spritesmith', function () {
       assert.strictEqual(fileExists, true);
       done();
     });
-
   });
-
 
   describe('converting a retina set of images', function () {
     gruntUtils.runTask('sprite:retina');
